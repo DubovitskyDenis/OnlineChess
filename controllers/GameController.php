@@ -18,6 +18,11 @@ class GameController extends Controller
 
     public function actionCreate()
     {
+        if (Yii::$app->user->isGuest) {
+            $this->redirect('/user/login');
+            return;
+        }
+
         $user_id = Yii::$app->user->id;
         $game = Game::findAwaitingGame($user_id);
         if (!$game) {
