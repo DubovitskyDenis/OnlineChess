@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Board;
+use app\models\GameAction;
 use Yii;
 use yii\web\Controller;
 use app\models\Game;
@@ -109,5 +111,32 @@ class GameController extends Controller
             'name' => "Surrender error",
             'message' => "Game hasn't began",
         ]);
+    }
+
+    public function actionMove($game_id, $from_x, $from_y, $to_x, $to_y)
+    {
+        $game = Game::findOne($game_id);
+
+        if (!$game) {
+            return self::notFountIdError($game_id);
+        }
+
+        $user_id = Yii::$app->user->id;
+        $board = new Board(['game_id' => $game_id]);
+        $piece = $board->board[$from_x][$from_y];
+
+        //TODO: delete 'true ||' after testing
+        if (true || $piece->isMovePossible($board, $to_x, $to_y)) {
+            $move = new GameAction([
+                'game_id' => $game_id,
+                'piece_id' => $board->board[$from_x][$from_y]->piece_id,
+                'to_x' => $to_x,
+                'to_y' => $to_y,
+                'effect' => $board->board[$to_x][$to_y]->isEmptyCell() ? GameAction::REGULAR_MOVE : GameAction::CAPTURE,
+            ]);
+            $move->save();
+        }
+
+        $this->redirect("/game/$game->id");
     }
 }
