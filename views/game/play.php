@@ -1,10 +1,10 @@
 <?php
-
+/** @var $this yii\web\View */
 /** @var \app\models\Game $game */
-
 use yii\helpers\Html;
 use app\models\Board;
-
+$this->registerCssFile('/css/board.css',['position'=>yii\web\View::POS_HEAD]);
+/*$this->registerCssFile('css/board.css');*/ 
 ?>
 
 <h1>
@@ -21,8 +21,35 @@ use app\models\Board;
         <?= Html::endForm() ?>
     <?php endif ?>
 </h1>
-<p>
-<pre><?= print_r(Board::getBoardArray($game->id)) ?></pre>
-<pre><?= print_r(\app\models\pieces\Piece::pieceFactory('pb1', 1, 1)) ?></pre>
-<pre><?= print_r((new \app\models\Board(['game_id' => $game->id]))) ?></pre>
-</p>
+<!--<p>
+<pre><?/*= print_r(Board::getBoardArray($game->id)) */?></pre>
+</p>-->
+<?php $board = Board::getBoardArray($game->id)?>
+<div class="boardpart">
+    <table border="1px" >
+        <?php for ($i = 0; $i < 8; $i++) : ?>
+            <tr>
+                <?php for ($j = 0; $j < 8; $j++) : ?>
+                    <?php $id = $i*10 + $j; ?>
+                    <?php /*$name = $board; */?>
+                    <?php if (($i + $j) % 2) : ?>
+                        <?php  ?>
+                        <td class="black">
+                            <?php
+                            echo Board::getImagePiece($board, 8 - $i, $j + 1);
+                            ?>
+                        </td>
+                    <?php else : ?>
+                        <td class="white">
+                            <?php
+                               echo Board::getImagePiece($board, 8 - $i, $j + 1);
+                            ?>
+                        </td>
+                    <?php endif ?>
+                <?php endfor ?>
+            </tr>
+        <?php endfor ?>
+    </table>
+</div>
+<div class="historypart">
+    

@@ -2,8 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=online_chess',
+    'dsn' => 'mysql:host=localhost;dbname=by_kirill',
     'username' => 'root',
-    'password' => 'p527asus',
+    'password' => 'root',
     'charset' => 'utf8',
 ];

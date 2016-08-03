@@ -1,0 +1,23 @@
+    .black {
+    width: 45px;
+    height: 45px;
+        background-color: darkslategrey;
+
+}
+.white {
+    width: 45px;
+    height: 45px;
+    background-color: white;
+
+}
+
+.leftblock {
+    width: 70%;
+    height: 100%;
+    display: inline-block;
+}
+.rightblock {
+    width: 30%;
+    height: 100%;
+    display: inline-block;
+}
