@@ -50,6 +50,10 @@ class Pawn extends Piece
         if ($x != 8 && !$straightRight->isEmptyCell() && !self::areSameColor($this, $straightRight)) {
             $possibleMoves[] = ['x' => $x+1, 'y' => $y+1];
         }
+        
+        if ($this->wasMoved($board)) {
+            $possibleMoves = ['x' => $x, 'y' => $y + 2];
+        }
 
         return $possibleMoves;
     }
@@ -75,6 +79,10 @@ class Pawn extends Piece
         $straightRight = $board[x+1][y-1];
         if ($x != 8 && !$straightRight->isEmptyCell() && !self::areSameColor($this, $straightRight)) {
             $possibleMoves[] = ['x' => $x+1, 'y' => $y-1];
+        }
+
+        if ($this->wasMoved($board)) {
+            $possibleMoves = ['x' => $x, 'y' => $y - 2];
         }
 
         return $possibleMoves;

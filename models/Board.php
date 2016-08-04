@@ -157,40 +157,4 @@ class Board extends Model
 
         return $board;
     }
-
-    public static function getImagePiece ($board, $i, $j)
-    {
-
-        $figure = $board[$j][$i]['piece_id'];
-        if ($figure == '') {
-            return '';
-        }
-        $figure = $figure[0] . $figure[1];
-        switch($figure) {
-            case 'bb':
-                return '<img src="/Figures_Icons/bb.svg">';
-            case 'bw':
-                return '<img src="/Figures_Icons/bw.svg">';
-            case 'kb':
-                return '<img src="/Figures_Icons/kb.svg">';
-            case 'kw':
-                return '<img src="/Figures_Icons/kw.svg">';
-            case 'nb':
-                return '<img src="/Figures_Icons/nb.svg">';
-            case 'nw':
-                return '<img src="/Figures_Icons/nw.svg">';
-            case 'pb':
-                return '<img src="/Figures_Icons/pb.svg">';
-            case 'pw':
-                return '<img src="/Figures_Icons/pw.svg">';
-            case 'qb':
-                return '<img src="/Figures_Icons/qb.svg">';
-            case 'qw':
-                return '<img src="/Figures_Icons/qw.svg">';
-            case 'rb':
-                return '<img src="/Figures_Icons/rb.svg">';
-            case 'rw':
-                return '<img src="/Figures_Icons/rw.svg">';
-        }
-    }
 }

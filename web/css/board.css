@@ -1,7 +1,7 @@
-    .black {
+.black {
     width: 45px;
     height: 45px;
-        background-color: darkslategrey;
+    background-color: darkslategrey;
 
 }
 .white {
@@ -11,13 +11,13 @@
 
 }
 
-.leftblock {
-    width: 70%;
-    height: 100%;
-    display: inline-block;
+.wrapper {
+    width: 100%;
+    margin:0 auto;
 }
-.rightblock {
-    width: 30%;
-    height: 100%;
-    display: inline-block;
+
+.possible-moves {
+    width: 45px;
+    height: 45px;
+    background-color: orange;
 }
