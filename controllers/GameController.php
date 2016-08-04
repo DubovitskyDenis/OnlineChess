@@ -44,7 +44,7 @@ class GameController extends Controller
         ]);
     }
 
-    public function actionPlay($game_id)
+    public function actionPlay($game_id, $possibleMoves = [])
     {
         $game = Game::findOne($game_id);
 
@@ -54,6 +54,22 @@ class GameController extends Controller
 
         return $this->render('play', [
             'game' => $game,
+            'possibleMoves' => $possibleMoves,
+        ]);
+    }
+
+    public function actionPossibleMoves($game_id, $from_x, $from_y)
+    {
+        $board = new Board(['game_id' => $game_id]);
+        if ($board) {
+            $possibleMoves = $board->board[$from_x][$from_y]->getPossibleMoves($board);
+            $possibleMoves['from_x'] = $from_x;
+            $possibleMoves['from_y'] = $from_y;
+        }
+
+        $this->runAction('game/play', [
+            'game_id' => $game_id,
+            'possibleMoves' => $possibleMoves,
         ]);
     }
 
