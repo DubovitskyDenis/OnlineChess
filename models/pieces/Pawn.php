@@ -55,8 +55,11 @@ class Pawn extends Piece
             }
         }
         
-        if ($this->wasMoved($board)) {
-            $possibleMoves = ['x' => $x, 'y' => $y + 2];
+        if (!$this->wasMoved($board) &&
+            $board->board[$x][$y + 1]->isEmptyCell() &&
+            $board->board[$x][$y + 2]->isEmptyCell()) {
+
+            $possibleMoves[] = ['x' => $x, 'y' => $y + 2];
         }
 
         return $possibleMoves;
@@ -89,8 +92,11 @@ class Pawn extends Piece
             }
         }
 
-        if ($this->wasMoved($board)) {
-            $possibleMoves = ['x' => $x, 'y' => $y - 2];
+        if (!$this->wasMoved($board) &&
+            $board->board[$x][$y - 1]->isEmptyCell() &&
+            $board->board[$x][$y - 2]->isEmptyCell()) {
+
+            $possibleMoves[] = ['x' => $x, 'y' => $y - 2];
         }
 
         return $possibleMoves;
