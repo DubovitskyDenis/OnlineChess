@@ -20,7 +20,23 @@ class King extends Piece
 
     public function getPossibleMoves(Board $board)
     {
-        // TODO: Implement getPossibleMoves() method.
-        return [];
+        $possibleMoves = [];
+        $x = $this->x;
+        $y = $this->y;
+
+        for ($i = -1; $i <= 1; $i++) {
+            for ($j = -1; $j <= 1; $j++) {
+
+                if ($i == 0 && $j == 0)          { continue; }
+                if (self::onBoard($x+$i, $y+$j)) { continue; }
+
+                $piece = $board->board[$x+$i][$y+$j];
+                if ($piece->isEmptyCell() || !self::areSameColor($this, $piece)) {
+                    self::addMoveToArray($possibleMoves, $x+$i, $y+$j);
+                }
+            }
+        }
+
+        return $possibleMoves;
     }
 }

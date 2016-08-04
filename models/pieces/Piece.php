@@ -44,7 +44,7 @@ abstract class Piece extends Model
         return $move ? true : false;
     }
 
-    private static function addMoveToArray(array &$array, $x, $y)
+    protected static function addMoveToArray(array &$array, $x, $y)
     {
         $array[] = ['x' => $x, 'y' => $y];
     }
