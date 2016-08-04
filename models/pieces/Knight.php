@@ -29,20 +29,20 @@ class Knight extends Piece
 
                 $to_x = $x + 2*$i;
                 $to_y = $y + $j;
-                if (!self::onBoard($to_x, $to_y)) { continue; }
-
-                $piece = $board->board[$to_x][$to_y];
-                if ($piece->isEmptyCell() || !self::areSameColor($this, $piece)) {
-                    self::addMoveToArray($possibleMoves, $to_x, $to_y);
+                if (self::onBoard($to_x, $to_y)) {
+                    $piece = $board->board[$to_x][$to_y];
+                    if ($piece->isEmptyCell() || !self::areSameColor($this, $piece)) {
+                        self::addMoveToArray($possibleMoves, $to_x, $to_y);
+                    }
                 }
 
                 $to_x = $x + $i;
                 $to_y = $y + 2*$j;
-                if (!self::onBoard($to_x, $to_y)) { continue; }
-
-                $piece = $board->board[$to_x][$to_y];
-                if ($piece->isEmptyCell() || !self::areSameColor($this, $piece)) {
-                    self::addMoveToArray($possibleMoves, $to_x, $to_y);
+                if (self::onBoard($to_x, $to_y)) {
+                    $piece = $board->board[$to_x][$to_y];
+                    if ($piece->isEmptyCell() || !self::areSameColor($this, $piece)) {
+                        self::addMoveToArray($possibleMoves, $to_x, $to_y);
+                    }
                 }
             }
         }
