@@ -28,11 +28,13 @@ class King extends Piece
             for ($j = -1; $j <= 1; $j++) {
 
                 if ($i == 0 && $j == 0)          { continue; }
-                if (self::onBoard($x+$i, $y+$j)) { continue; }
+                $to_x = $x + $i;
+                $to_y = $y + $j;
+                if (!self::onBoard($to_x, $to_y)) { continue; }
 
-                $piece = $board->board[$x+$i][$y+$j];
+                $piece = $board->board[$to_x][$to_y];
                 if ($piece->isEmptyCell() || !self::areSameColor($this, $piece)) {
-                    self::addMoveToArray($possibleMoves, $x+$i, $y+$j);
+                    self::addMoveToArray($possibleMoves, $to_x, $to_y);
                 }
             }
         }

@@ -20,7 +20,33 @@ class Knight extends Piece
 
     public function getPossibleMoves(Board $board)
     {
-        // TODO: Implement getPossibleMoves() method.
-        return [];
+        $possibleMoves = [];
+        $x = $this->x;
+        $y = $this->y;
+
+        for ($i = -1; $i <= 1; $i += 2) {
+            for ($j = -1; $j <= 1; $j += 2) {
+
+                $to_x = $x + 2*$i;
+                $to_y = $y + $j;
+                if (!self::onBoard($to_x, $to_y)) { continue; }
+
+                $piece = $board->board[$to_x][$to_y];
+                if ($piece->isEmptyCell() || !self::areSameColor($this, $piece)) {
+                    self::addMoveToArray($possibleMoves, $to_x, $to_y);
+                }
+
+                $to_x = $x + $i;
+                $to_y = $y + 2*$j;
+                if (!self::onBoard($to_x, $to_y)) { continue; }
+
+                $piece = $board->board[$to_x][$to_y];
+                if ($piece->isEmptyCell() || !self::areSameColor($this, $piece)) {
+                    self::addMoveToArray($possibleMoves, $to_x, $to_y);
+                }
+            }
+        }
+
+        return $possibleMoves;
     }
 }
