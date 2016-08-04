@@ -56,7 +56,16 @@ abstract class Piece extends Model
         $possibleMoves = [];
         $x = $this->x;
         $y = $this->y;
-        for ($i = $x, $j = $y; self::onBoard($i, $j); $i++, $j++) {
+        for ($i = $x + 1, $j = $y + 1; self::onBoard($i, $j); $i++, $j++) {
+            if (!$board->board[$i][$j]->isEmptyCell()) {
+                if (!self::areSameColor($this, $board->board[$i][$j]) ) {
+                    self::addMoveToArray($possibleMoves, $i, $j);
+                }
+                break;
+            }
+            self::addMoveToArray($possibleMoves, $i, $j);
+        }
+        for ($i = $x - 1, $j = $y + 1; self::onBoard($i, $j); $i--, $j++) {
             if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board->board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
@@ -65,7 +74,7 @@ abstract class Piece extends Model
             }
             self::addMoveToArray($possibleMoves, $i, $j);
         }
-        for ($i = $x, $j = $y; self::onBoard($i, $j); $i--, $j++) {
+        for ($i = $x + 1, $j = $y - 1; self::onBoard($i, $j); $i++, $j--) {
             if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board->board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
@@ -74,16 +83,7 @@ abstract class Piece extends Model
             }
             self::addMoveToArray($possibleMoves, $i, $j);
         }
-        for ($i = $x, $j = $y; self::onBoard($i, $j); $i++, $j--) {
-            if (!$board->board[$i][$j]->isEmptyCell()) {
-                if (!self::areSameColor($this, $board->board[$i][$j])) {
-                    self::addMoveToArray($possibleMoves, $i, $j);
-                }
-                break;
-            }
-            self::addMoveToArray($possibleMoves, $i, $j);
-        }
-        for ($i = $x, $j = $y; self::onBoard($i, $j); $i--, $j--) {
+        for ($i = $x - 1, $j = $y - 1; self::onBoard($i, $j); $i--, $j--) {
             if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board->board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
@@ -101,7 +101,7 @@ abstract class Piece extends Model
         $possibleMoves = [];
         $x = $this->x;
         $y = $this->y;
-        for ($i = $x, $j = $y; self::onBoard($i, $j); $j++) {
+        for ($i = $x, $j = $y + 1; self::onBoard($i, $j); $j++) {
             if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board->board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
@@ -110,7 +110,7 @@ abstract class Piece extends Model
             }
             self::addMoveToArray($possibleMoves, $i, $j);
         }
-        for ($i = $x, $j = $y; self::onBoard($i, $j); $j--) {
+        for ($i = $x, $j = $y - 1; self::onBoard($i, $j); $j--) {
             if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board->board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
@@ -128,7 +128,7 @@ abstract class Piece extends Model
         $possibleMoves = [];
         $x = $this->x;
         $y = $this->y;
-        for ($i = $x, $j = $y; self::onBoard($i, $j); $i++) {
+        for ($i = $x + 1, $j = $y; self::onBoard($i, $j); $i++) {
             if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board->board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
@@ -137,7 +137,7 @@ abstract class Piece extends Model
             }
             self::addMoveToArray($possibleMoves, $i, $j);
         }
-        for ($i = $x, $j = $y; self::onBoard($i, $j); $i--) {
+        for ($i = $x - 1, $j = $y; self::onBoard($i, $j); $i--) {
             if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board->board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
