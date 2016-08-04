@@ -35,35 +35,33 @@ function getImagePiece($board, $i, $j)
     $figure = $figure[0] . $figure[1];
     switch($figure) {
         case 'bb':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/bb.svg"></a>';
+            return '/Figures_Icons/bb.svg';
         case 'bw':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/bw.svg"></a>';
+            return '/Figures_Icons/bw.svg';
         case 'kb':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/kb.svg"></a>';
+            return '/Figures_Icons/kb.svg';
         case 'kw':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/kw.svg"></a>';
+            return '/Figures_Icons/kw.svg';
         case 'nb':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/nb.svg"></a>';
+            return '/Figures_Icons/nb.svg';
         case 'nw':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/nw.svg"></a>';
+            return '/Figures_Icons/nw.svg';
         case 'pb':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/pb.svg"></a>';
+            return '/Figures_Icons/pb.svg';
         case 'pw':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/pw.svg"></a>';
+            return '/Figures_Icons/pw.svg';
         case 'qb':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/qb.svg"></a>';
+            return '/Figures_Icons/qb.svg';
         case 'qw':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/qw.svg"></a>';
+            return '/Figures_Icons/qw.svg';
         case 'rb':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/rb.svg"></a>';
+            return '/Figures_Icons/rb.svg';
         case 'rw':
-            return '<a href ="/possible_moves/x:y"><img src="/Figures_Icons/rw.svg"></a>';
+            return '/Figures_Icons/rw.svg';
     }
 }
 ?>
 <?php $board = Board::getBoardArray($game->id)?>
-<?php /*$gameAction = GameAction:: findOne($game->id) */?>
-
 <div class="wrapper">
 <div class="leftblock">
     <table border="1px" >
@@ -71,19 +69,12 @@ function getImagePiece($board, $i, $j)
             <tr>
                 <?php for ($j = 0; $j < 8; $j++) : ?>
                     <?php $id = $i*10 + $j; ?>
-                    <?php if (($i + $j) % 2) : ?>
-                        <td class="black">
-                            <?php
-                                echo getImagePiece($board, 8 - $i, $j + 1);
-                            ?>
+                        <td class="<?= (($i + $j) % 2) ? 'black' : 'white' ?>">
+                            <?php $a = 8 - $i; $b = 1 + $j ?>
+                            <a href = <?="$game->id/possible_moves/$b:$a"?>>
+                                <img src=" <?= getImagePiece($board, 8 - $i, 1 + $j); ?>">
+                            </a>
                         </td>
-                    <?php else : ?>
-                        <td class="white">
-                            <?php
-                                echo getImagePiece($board, 8 - $i, $j + 1);
-                            ?>
-                        </td>
-                    <?php endif ?>
                 <?php endfor ?>
             </tr>
         <?php endfor ?>
