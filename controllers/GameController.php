@@ -44,7 +44,7 @@ class GameController extends Controller
         ]);
     }
 
-    public function actionPlay($game_id, $possibleMoves = [])
+    public function actionPlay($game_id)
     {
         $game = Game::findOne($game_id);
 
@@ -54,7 +54,7 @@ class GameController extends Controller
 
         return $this->render('play', [
             'game' => $game,
-            'possibleMoves' => $possibleMoves,
+            'possibleMoves' => [],
         ]);
     }
 
@@ -67,15 +67,20 @@ class GameController extends Controller
             $possibleMoves['from_y'] = $from_y;
         }
 
-        $this->runAction('game/play', [
-            'game_id' => $game_id,
-            'possibleMoves' => $possibleMoves,
+        $game = Game::findOne($game_id);
+
+        if (!$game) {
+            return self::notFountIdError($game_id);
+        }
+
+        return $this->render('play', [
+            'game' => $game,
+            'possibleMoves' => [],
         ]);
     }
 
     public function actionCancel($game_id)
     {
-        //$game_id = Yii::$app->request->post()->game_id;
         $game = Game::findOne($game_id);
 
         if (!$game) {
