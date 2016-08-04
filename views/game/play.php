@@ -68,13 +68,16 @@ function getImagePiece($board, $i, $j)
         <?php for ($i = 0; $i < 8; $i++) : ?>
             <tr>
                 <?php for ($j = 0; $j < 8; $j++) : ?>
-                    <?php $id = $i*10 + $j; ?>
+                    <?php $id = $i*10 + $j; ?><!--
+                    <?php /*if (in_array(['x' => $i, 'y' => $j], $possibleMoves)) : */?>
+                    --><?php /*else : */?>
                         <td class="<?= (($i + $j) % 2) ? 'black' : 'white' ?>">
                             <?php $a = 8 - $i; $b = 1 + $j ?>
                             <a href = <?="$game->id/possible_moves/$b:$a"?>>
                                 <img src=" <?= getImagePiece($board, 8 - $i, 1 + $j); ?>">
                             </a>
-                        </td>
+                        </td><!--
+                    --><?php /*endif; */?>
                 <?php endfor ?>
             </tr>
         <?php endfor ?>
