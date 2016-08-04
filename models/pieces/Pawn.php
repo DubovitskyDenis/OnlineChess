@@ -40,15 +40,19 @@ class Pawn extends Piece
         if ($straight->isEmptyCell()) {
             $possibleMoves[] = ['x' => $x, 'y' => $y+1];
         }
-        
-        $straightLeft = $board->board[$x-1][$y+1];
-        if ($x != 1 && !$straightLeft->isEmptyCell() && !self::areSameColor($this, $straightLeft)) {
-            $possibleMoves[] = ['x' => $x-1, 'y' => $y+1];
+
+        if ($x != 1) {
+            $straightLeft = $board->board[$x - 1][$y + 1];
+            if (!$straightLeft->isEmptyCell() && !self::areSameColor($this, $straightLeft)) {
+                $possibleMoves[] = ['x' => $x - 1, 'y' => $y + 1];
+            }
         }
-        
-        $straightRight = $board->board[$x+1][$y+1];
-        if ($x != 8 && !$straightRight->isEmptyCell() && !self::areSameColor($this, $straightRight)) {
-            $possibleMoves[] = ['x' => $x+1, 'y' => $y+1];
+
+        if ($x != 8) {
+            $straightRight = $board->board[$x + 1][$y + 1];
+            if (!$straightRight->isEmptyCell() && !self::areSameColor($this, $straightRight)) {
+                $possibleMoves[] = ['x' => $x + 1, 'y' => $y + 1];
+            }
         }
         
         if ($this->wasMoved($board)) {
@@ -71,14 +75,18 @@ class Pawn extends Piece
             $possibleMoves[] = ['x' => $x, 'y' => $y-1];
         }
 
-        $straightLeft = $board->board[$x-1][$y-1];
-        if ($x != 1 && !$straightLeft->isEmptyCell() && !self::areSameColor($this, $straightLeft)) {
-            $possibleMoves[] = ['x' => $x-1, 'y' => $y-1];
+        if ($x != 1) {
+            $straightLeft = $board->board[$x - 1][$y - 1];
+            if (!$straightLeft->isEmptyCell() && !self::areSameColor($this, $straightLeft)) {
+                $possibleMoves[] = ['x' => $x - 1, 'y' => $y - 1];
+            }
         }
 
-        $straightRight = $board->board[$x+1][$y-1];
-        if ($x != 8 && !$straightRight->isEmptyCell() && !self::areSameColor($this, $straightRight)) {
-            $possibleMoves[] = ['x' => $x+1, 'y' => $y-1];
+        if ($x != 1) {
+            $straightRight = $board->board[$x + 1][$y - 1];
+            if (!$straightRight->isEmptyCell() && !self::areSameColor($this, $straightRight)) {
+                $possibleMoves[] = ['x' => $x + 1, 'y' => $y - 1];
+            }
         }
 
         if ($this->wasMoved($board)) {

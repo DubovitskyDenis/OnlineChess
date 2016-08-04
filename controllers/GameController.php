@@ -68,6 +68,9 @@ class GameController extends Controller
             $possibleMoves['from_y'] = $from_y;
         }
 
+        print_r($possibleMoves);
+        die;
+
         $game = Game::findOne($game_id);
 
         if (!$game) {
