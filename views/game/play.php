@@ -64,20 +64,27 @@ function getImagePiece($board, $i, $j)
 <?php $board = Board::getBoardArray($game->id)?>
 <div class="wrapper">
 <div class="leftblock">
+    <?php echo print_r($possibleMoves); ?>
     <table border="1px" >
         <?php for ($i = 0; $i < 8; $i++) : ?>
             <tr>
                 <?php for ($j = 0; $j < 8; $j++) : ?>
-                    <?php $id = $i*10 + $j; ?><!--
-                    <?php /*if (in_array(['x' => $i, 'y' => $j], $possibleMoves)) : */?>
-                    --><?php /*else : */?>
+                    <?php if (in_array(['x' => 1 +  $j, 'y' => 8 - $i], $possibleMoves)) : ?>
+                            <?php $a = 8 - $i; $b = 1 + $j ?>
+                            <?php $x = $possibleMoves['from_x']; $y = $possibleMoves['from_y']?>
+                                <td class="possible-moves">
+                                    <a href = "<?="/game/$game->id/move/$x:$y:$b:$a"?>">
+                                        <img src=" <?= getImagePiece($board, 8 - $i, 1 + $j); ?>">
+                                    </a>
+                                </td>
+                    <?php else :?>
                         <td class="<?= (($i + $j) % 2) ? 'black' : 'white' ?>">
                             <?php $a = 8 - $i; $b = 1 + $j ?>
-                            <a href = <?="$game->id/possible_moves/$b:$a"?>>
+                            <a href = <?="/game/$game->id/possible_moves/$b:$a"?>>
                                 <img src=" <?= getImagePiece($board, 8 - $i, 1 + $j); ?>">
                             </a>
-                        </td><!--
-                    --><?php /*endif; */?>
+                        </td>
+                    <?php endif; ?>
                 <?php endfor ?>
             </tr>
         <?php endfor ?>

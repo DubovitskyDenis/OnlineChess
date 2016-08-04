@@ -19,5 +19,11 @@
 .possible-moves {
     width: 45px;
     height: 45px;
-    background-color: orange;
+    background-color: yellow;
+}
+
+a {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
