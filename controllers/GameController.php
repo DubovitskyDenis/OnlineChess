@@ -155,6 +155,7 @@ class GameController extends Controller
                 'to_x' => $to_x,
                 'to_y' => $to_y,
                 'effect' => $board->board[$to_x][$to_y]->isEmptyCell() ? GameAction::REGULAR_MOVE : GameAction::CAPTURE,
+                'check' => false,
             ]);
             $move->save();
         }
