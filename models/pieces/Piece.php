@@ -150,7 +150,7 @@ abstract class Piece extends Model
     {
         if (!self::onBoard($to_x, $to_y)) return false;
 
-        // TODO: are to_x and to_y inside getPossibleMoves()
+        return in_array(['x' => $to_x, 'y' => $to_y], $this->getPossibleMoves($board));
     }
 
     public static function areSameColor(Piece $first, Piece $second)
