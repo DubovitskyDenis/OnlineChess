@@ -57,7 +57,7 @@ abstract class Piece extends Model
         $x = $this->x;
         $y = $this->y;
         for ($i = $x, $j = $y; self::onBoard($i, $j); $i++, $j++) {
-            if (!$board[$i][$j]->isEmptyCell()) {
+            if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
                 }
@@ -66,7 +66,7 @@ abstract class Piece extends Model
             self::addMoveToArray($possibleMoves, $i, $j);
         }
         for ($i = $x, $j = $y; self::onBoard($i, $j); $i--, $j++) {
-            if (!$board[$i][$j]->isEmptyCell()) {
+            if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
                 }
@@ -75,7 +75,7 @@ abstract class Piece extends Model
             self::addMoveToArray($possibleMoves, $i, $j);
         }
         for ($i = $x, $j = $y; self::onBoard($i, $j); $i++, $j--) {
-            if (!$board[$i][$j]->isEmptyCell()) {
+            if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
                 }
@@ -84,7 +84,7 @@ abstract class Piece extends Model
             self::addMoveToArray($possibleMoves, $i, $j);
         }
         for ($i = $x, $j = $y; self::onBoard($i, $j); $i--, $j--) {
-            if (!$board[$i][$j]->isEmptyCell()) {
+            if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
                 }
@@ -102,7 +102,7 @@ abstract class Piece extends Model
         $x = $this->x;
         $y = $this->y;
         for ($i = $x, $j = $y; self::onBoard($i, $j); $j++) {
-            if (!$board[$i][$j]->isEmptyCell()) {
+            if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
                 }
@@ -111,7 +111,7 @@ abstract class Piece extends Model
             self::addMoveToArray($possibleMoves, $i, $j);
         }
         for ($i = $x, $j = $y; self::onBoard($i, $j); $j--) {
-            if (!$board[$i][$j]->isEmptyCell()) {
+            if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
                 }
@@ -127,7 +127,7 @@ abstract class Piece extends Model
         $x = $this->x;
         $y = $this->y;
         for ($i = $x, $j = $y; self::onBoard($i, $j); $i++) {
-            if (!$board[$i][$j]->isEmptyCell()) {
+            if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
                 }
@@ -136,7 +136,7 @@ abstract class Piece extends Model
             self::addMoveToArray($possibleMoves, $i, $j);
         }
         for ($i = $x, $j = $y; self::onBoard($i, $j); $i--) {
-            if (!$board[$i][$j]->isEmptyCell()) {
+            if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
                 }

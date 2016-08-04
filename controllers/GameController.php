@@ -61,6 +61,7 @@ class GameController extends Controller
     public function actionPossibleMoves($game_id, $from_x, $from_y)
     {
         $board = new Board(['game_id' => $game_id]);
+        $possibleMoves = [];
         if ($board) {
             $possibleMoves = $board->board[$from_x][$from_y]->getPossibleMoves($board);
             $possibleMoves['from_x'] = $from_x;
@@ -75,7 +76,7 @@ class GameController extends Controller
 
         return $this->render('play', [
             'game' => $game,
-            'possibleMoves' => [],
+            'possibleMoves' => $possibleMoves,
         ]);
     }
 
