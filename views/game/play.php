@@ -33,32 +33,7 @@ function getImagePiece($board, $i, $j)
         return '';
     }
     $figure = $figure[0] . $figure[1];
-    switch($figure) {
-        case 'bb':
-            return '/Figures_Icons/bb.svg';
-        case 'bw':
-            return '/Figures_Icons/bw.svg';
-        case 'kb':
-            return '/Figures_Icons/kb.svg';
-        case 'kw':
-            return '/Figures_Icons/kw.svg';
-        case 'nb':
-            return '/Figures_Icons/nb.svg';
-        case 'nw':
-            return '/Figures_Icons/nw.svg';
-        case 'pb':
-            return '/Figures_Icons/pb.svg';
-        case 'pw':
-            return '/Figures_Icons/pw.svg';
-        case 'qb':
-            return '/Figures_Icons/qb.svg';
-        case 'qw':
-            return '/Figures_Icons/qw.svg';
-        case 'rb':
-            return '/Figures_Icons/rb.svg';
-        case 'rw':
-            return '/Figures_Icons/rw.svg';
-    }
+    return "/Figures_Icons/$figure.svg";
 }
 ?>
 <?php $board = Board::getBoardArray($game->id)?>
