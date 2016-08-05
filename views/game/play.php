@@ -6,12 +6,13 @@ use app\models\Board;
 use app\models\user\User;
 use app\models\GameAction;
 $this->registerCssFile('/css/board.css',['position'=>yii\web\View::POS_HEAD]);
-/*$this->registerCssFile('css/board.css');*/ 
+/*$this->registerCssFile('css/board.css');*/
+$user = User::findOne($game->winner_id)
 ?>
 <h1>
     Game <?= $game->id ?>
     <?php if ($game->is_finished) : ?>
-        finished. Winner: <?= (User::findOne($game->winner_id))->email ?>
+        finished. Winner: <?= ($user) ? $user->email : $game->winner_id ?>
     <?php elseif (!$game->alreadyBegan()) : ?>
         <?= Html::beginForm(["/game/cancel/$game->id"], 'post', ['class' => '']) ?>
         <?= Html::submitButton('Cancel', ['class' => 'btn btn-primary']) ?>
