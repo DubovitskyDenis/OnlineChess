@@ -63,7 +63,6 @@ function getImagePiece($board, $i, $j)
 ?>
 <?php $board = Board::getBoardArray($game->id)?>
 <div class="leftblock">
-    <?php echo print_r($possibleMoves); ?>
     <table border="1px" >
         <?php for ($i = 0; $i < 8; $i++) : ?>
             <tr>
