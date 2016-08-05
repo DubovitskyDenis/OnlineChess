@@ -11,7 +11,7 @@ $this->registerCssFile('/css/board.css',['position'=>yii\web\View::POS_HEAD]);
 <h1>
     Game <?= $game->id ?>
     <?php if ($game->is_finished) : ?>
-        finished. Winner: <?= $game->winner_id ?>
+        finished. Winner: <?= (User::findOne($game->winner_id))->email ?>
     <?php elseif (!$game->alreadyBegan()) : ?>
         <?= Html::beginForm(["/game/cancel/$game->id"], 'post', ['class' => '']) ?>
         <?= Html::submitButton('Cancel', ['class' => 'btn btn-primary']) ?>
