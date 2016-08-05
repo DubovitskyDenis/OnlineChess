@@ -147,8 +147,25 @@ class GameController extends Controller
         $board = new Board(['game_id' => $game_id]);
         $piece = $board->board[$from_x][$from_y];
 
+        $lastMove = GameAction::find()
+            ->where(['game_id' => $game_id])
+            ->orderBy('id DESC')
+            ->limit(1)
+            ->one();
+        $moveAllowed = false;
+        if (!$lastMove && $user_id == $game->user_id_white && $board->board[$from_x][$from_y]->color == 'w') {
+            $moveAllowed = true;
+        }
+        if ($lastMove && $lastMove->piece_id[1] == 'b' && $user_id == $game->user_id_white && $board->board[$from_x][$from_y]->color == 'w') {
+            $moveAllowed =true;
+        }
+        if ($lastMove && $lastMove->piece_id[1] == 'w' && $user_id == $game->user_id_black && $board->board[$from_x][$from_y]->color == 'b') {
+            $moveAllowed =true;
+        }
+
+
         //TODO: delete 'true ||' after testing
-        if (true || $piece->isMovePossible($board, $to_x, $to_y)) {
+        if ($moveAllowed && $piece->isMovePossible($board, $to_x, $to_y)) {
             $move = new GameAction([
                 'game_id' => $game_id,
                 'piece_id' => $board->board[$from_x][$from_y]->piece_id,
