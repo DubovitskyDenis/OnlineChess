@@ -11,18 +11,13 @@
 
 }
 
-.wrapper {
-    width: 100%;
-    margin:0 auto;
-}
-
 .possible-moves {
     width: 45px;
     height: 45px;
     background-color: yellow;
 }
 
-a {
+.leftblock a {
     width: 100%;
     height: 100%;
     display: block;

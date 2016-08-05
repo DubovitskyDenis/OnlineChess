@@ -62,7 +62,6 @@ function getImagePiece($board, $i, $j)
 }
 ?>
 <?php $board = Board::getBoardArray($game->id)?>
-<div class="wrapper">
 <div class="leftblock">
     <?php echo print_r($possibleMoves); ?>
     <table border="1px" >
@@ -90,8 +89,3 @@ function getImagePiece($board, $i, $j)
         <?php endfor ?>
     </table>
 </div>
-    
-    
-    
-    
-    

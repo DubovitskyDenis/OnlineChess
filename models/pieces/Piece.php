@@ -141,7 +141,7 @@ abstract class Piece extends Model
             if (!$board->board[$i][$j]->isEmptyCell()) {
                 if (!self::areSameColor($this, $board->board[$i][$j])) {
                     self::addMoveToArray($possibleMoves, $i, $j);
-                }
+                    }
                 break;
             }
             self::addMoveToArray($possibleMoves, $i, $j);
