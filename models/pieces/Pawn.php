@@ -85,7 +85,7 @@ class Pawn extends Piece
             }
         }
 
-        if ($x != 1) {
+        if ($x != 8) {
             $straightRight = $board->board[$x + 1][$y - 1];
             if (!$straightRight->isEmptyCell() && !self::areSameColor($this, $straightRight)) {
                 $possibleMoves[] = ['x' => $x + 1, 'y' => $y - 1];
