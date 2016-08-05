@@ -143,6 +143,11 @@ class GameController extends Controller
             return self::notFountIdError($game_id);
         }
 
+        if ($game->is_finished) {
+            $this->redirect("/game/$game->id");
+            return;
+        }
+
         $user_id = Yii::$app->user->id;
         $board = new Board(['game_id' => $game_id]);
         $piece = $board->board[$from_x][$from_y];
@@ -163,6 +168,12 @@ class GameController extends Controller
             $moveAllowed =true;
         }
 
+        if ($moveAllowed && !$board->board[$to_x][$to_y]->isEmptyCell() && $board->board[$to_x][$to_y]->piece_id[0] == 'k') {
+            $game->is_finished = true;
+            $game->winner_id = $user_id;
+            $game->save();
+        }
+
 
         //TODO: delete 'true ||' after testing
         if ($moveAllowed && $piece->isMovePossible($board, $to_x, $to_y)) {
@@ -174,6 +185,7 @@ class GameController extends Controller
                 'effect' => $board->board[$to_x][$to_y]->isEmptyCell() ? GameAction::REGULAR_MOVE : GameAction::CAPTURE,
                 'check' => false,
             ]);
+
             $move->save();
         }
 
